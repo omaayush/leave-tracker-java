@@ -7,10 +7,10 @@ import java.text.ParseException;
 public class Main {
 
 //    void applyForLeaves(Employee employee,int a ){
-//        if(employee.leavesLeft>=a)
+//        if(employee.generalLeaves>=a)
 //        {
-//            employee.leavesLeft-=a;
-//            System.out.println("Leave Granted");
+//            employee.generalLeaves-=a;
+//            System.out.println("LeaveType Granted");
 //        }
 //        else
 //        {
@@ -20,7 +20,7 @@ public class Main {
 //
 //    void leaveLeft(Employee employee)
 //    {
-//        System.out.println(employee.leavesLeft+ " Leaves Left");
+//        System.out.println(employee.generalLeaves+ " Leaves Left");
 //    }
 
 
