@@ -122,6 +122,11 @@ public class Employee {
                 '}';
     }
 
+    public boolean hasWorkedForDays(LocalDate startDate, int numberOfDaysRequiredForWork) {
+        long numberOfDaysWorked = ChronoUnit.DAYS.between(dateOfJoining, startDate);
+        return numberOfDaysWorked >= numberOfDaysRequiredForWork;
+    }
+
     public LeaveResponse getAllLeaves()
         {
             return new LeaveResponse(toString());

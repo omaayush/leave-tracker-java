@@ -41,7 +41,7 @@ public class LeavesLeft {
         else if(this.leaveRequest.leaveType==LeaveType.COMPOFF)
         {
             //deduct comp off leaves
-            CompOffManager compOffManager=new CompOffManager(this.leaveRequest.employee);
+            CompOffManager compOffManager=new CompOffManager();
                 compOffManager.removeAllowedCompOffForRequestedDate(this.leaveRequest.startDate);
 
         }

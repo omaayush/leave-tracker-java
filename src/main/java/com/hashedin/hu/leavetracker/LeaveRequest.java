@@ -8,6 +8,7 @@ public class LeaveRequest {
     LocalDate startDate;
     LocalDate endDate;
     LeaveType leaveType;
+    LocalDate requestDate;
 
     public LeaveRequest(Employee employee,
                         LocalDate startDate,
@@ -17,6 +18,7 @@ public class LeaveRequest {
         this.startDate = startDate;
         this.endDate = endDate;
         this.leaveType = leaveType;
+        this.requestDate=LocalDate.now();
     }
 
 
@@ -56,9 +58,9 @@ public class LeaveRequest {
         }
         else if(this.leaveType==LeaveType.COMPOFF)
         {
-            CompOffManager compOffManager=new CompOffManager(this.employee);
-            compOffManager.currentCompOffLeaves();
-            long hasCompOff=compOffManager.allowedCompOffFromRequestedDate(this.startDate);
+            CompOffManager compOffManager=new CompOffManager();
+            compOffManager.currentCompOffLeaves(this.employee);
+            long hasCompOff=compOffManager.allowedCompOffFromRequestedDate(this.employee,this.startDate);
             if(hasCompOff>0)
             {
                 return true;

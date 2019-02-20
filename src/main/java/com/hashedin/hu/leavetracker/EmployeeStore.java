@@ -6,16 +6,15 @@ package com.hashedin.hu.leavetracker;
 public class EmployeeStore {
     ArrayList <Employee> employees;
 
-
     public EmployeeStore() {
-            this.employees = new ArrayList<>();
-        }
-
-        public void addEmployeeToStore(Employee employee) {
-            this.employees.add(employee);
-        }
-
-        public ArrayList<Employee> getAllEmployees() {
-            return this.employees;
-        }
+        this.employees = new ArrayList<>();
     }
+
+    public void addEmployeeToStore(Employee employee) {
+        this.employees.add(employee);
+    }
+
+    public ArrayList<Employee> getAllEmployees() {
+        return this.employees;
+    }
+}
