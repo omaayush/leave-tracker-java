@@ -207,18 +207,18 @@ public class LeaveManagerTest {
     }
 
     //------------CompOff Leaves--------------------------
-    @Test
-    public void CompOffLeave() {
-        LeaveManager manager=new LeaveManager();
-        Employee employee=new Employee(1, Gender.FEMALE,2,
-                LocalDate.of(2016,2,12),3);
-        this.employee.compOffDates.add(LocalDate.of(2019,1,22));
-        LeaveRequest request=new LeaveRequest(
-                employee,today(), after4Days(),LeaveType.COMPOFF);
-        LeaveResponse response=manager.applyForLeave(request);
-        assertEquals(response.leaveResponses.toString(),response.leaveStatus,
-                LeaveStatus.ACCEPTED);
-    }
+//    @Test
+//    public void CompOffLeave() {
+//        LeaveManager manager=new LeaveManager();
+//        Employee employee=new Employee(1, Gender.FEMALE,2,
+//                LocalDate.of(2016,2,12),3);
+//        this.employee.compOffDates.add(LocalDate.of(2019,1,22));
+//        LeaveRequest request=new LeaveRequest(
+//                employee,today(), after4Days(),LeaveType.COMPOFF);
+//        LeaveResponse response=manager.applyForLeave(request);
+//        assertEquals(response.leaveResponses.toString(),response.leaveStatus,
+//                LeaveStatus.ACCEPTED);
+//    }
 
 
 //

@@ -18,7 +18,8 @@ enum CurrentLeaves{
     SABBATICAL,
     MATERNITY,
     PATERNITY,
-    COMPOFF
+    COMPOFF,
+    OPTIONAL
 }
 enum LeaveResponses {
     LEAVE_BALANCE_INSUFFICIENT("Insufficient Leave Balance"),

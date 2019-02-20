@@ -6,16 +6,16 @@ import java.util.HashSet;
 import java.time.LocalDate;
 
 public class LeavesStore {
-    // private HashMap<Employee, LeaveStatus> employeeLeaveStatusHashMap;
-    // TODO: Use HashMap instead of ArrayList
     private ArrayList<LeaveGrant> leaves;
     private ArrayList<CompOffManager> compOffs;
     private HashSet<LocalDate> holidays;
+    private ArrayList<OptionalHolidays> optionalHolidays;
 
     public LeavesStore() {
         leaves = new ArrayList<LeaveGrant>();
         holidays = new HashSet<LocalDate>();
         compOffs = new ArrayList<CompOffManager>();
+        optionalHolidays=new ArrayList<OptionalHolidays>();
     }
 
     public ArrayList<LeaveGrant> getLeaves() {
@@ -63,4 +63,16 @@ public class LeavesStore {
 //        }
 //        compOffs.set(i, compOff);
 //    }
+    public ArrayList<OptionalHolidays> getOptionalHolidays() {
+            return optionalHolidays;
+    }
+
+    public boolean addOptionalHoliday(OptionalHolidays optionalLeave) {
+        return this.optionalHolidays.add(optionalLeave);
+    }
+
+    public void setOptionalHolidays(ArrayList<OptionalHolidays> optionalHoliday) {
+        this.optionalHolidays = optionalHoliday;
+    }
+
 }
