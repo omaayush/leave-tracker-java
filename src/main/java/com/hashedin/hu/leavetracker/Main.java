@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.text.ParseException;
+import java.util.concurrent.*;
 
 public class Main {
 
@@ -41,7 +42,29 @@ public class Main {
 //        #use LocalDate only not Date (working)
 //        LocalDate date=LocalDate.now();
 //        System.out.println(date);
+//        LeaveAccrualManager leaveCreditManager= (LeaveAccrualManager) Executors.newFixedThreadPool(10);
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        EmployeeStore employeeStore = new EmployeeStore();
+        LeaveAccrualManager leaveAccrualManager = new LeaveAccrualManager(employeeStore);
+
+        final Runnable leaveAccrualService = new Runnable() {
+            public void run() {
+                // put the leave accrual credit method in here
+                leaveAccrualManager.creditLeavesPeriodically(LocalDate.now());
+            }
+        };
+
+        final ScheduledFuture<?> leaveAccrualServiceHandle =
+                scheduler.scheduleAtFixedRate(leaveAccrualService, LocalDate.now().lengthOfMonth() - LocalDate.now().getDayOfMonth(), 30, TimeUnit.DAYS);
+
+
+
 
 
     }
 }
+
+//test all
+//storeof Employees
+//checkfromlastaddedholidays

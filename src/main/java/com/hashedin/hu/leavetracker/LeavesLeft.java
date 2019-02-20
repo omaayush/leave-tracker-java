@@ -1,37 +1,49 @@
 package com.hashedin.hu.leavetracker;
 
 public class LeavesLeft {
-    public void getAllLeaves(Employee employee)
-    {
-
+    LeaveRequest leaveRequest;
+    public LeavesLeft(LeaveRequest leaveRequestRequest) {
+        this.leaveRequest=leaveRequestRequest;
     }
 
-    public void afterApplyingLeave(LeaveRequest request) {
+    //    public LeaveResponse[] getAllLeaves(Employee employee)
+//    {
+//        LeaveResponse allLeaves[]=new LeaveResponse[5];
+//        return allLeaves;
+//    }
+//        public LeaveResponse getAllLeaves()
+//        {
+//            return new LeaveResponse(this.leaveRequest.employee.toString());
+//        }
 
-        if(request.leaveType==LeaveType.GENERAL)
+    public void leavesDeductions() {
+
+        if(this.leaveRequest.leaveType==LeaveType.GENERAL)
         {
-            request.employee.setGeneralLeaves(
-                    request.employee.getGeneralLeaves()-request.noOfHolidaysApplied());
+            this.leaveRequest.employee.setGeneralLeaves(
+                    this.leaveRequest.employee.getGeneralLeaves()-this.leaveRequest.noOfHolidaysApplied());
         }
-        else if(request.leaveType==LeaveType.SABBATICAL)
+        else if(this.leaveRequest.leaveType==LeaveType.SABBATICAL)
         {
-            request.employee.setSabaticalLeaves(
-                    request.employee.getSabaticalLeaves()-request.noOfHolidaysApplied());
+            this.leaveRequest.employee.setSabaticalLeaves(
+                    this.leaveRequest.employee.getSabaticalLeaves()-this.leaveRequest.noOfHolidaysApplied());
         }
-        else if(request.leaveType==LeaveType.MATERNITY)
+        else if(this.leaveRequest.leaveType==LeaveType.MATERNITY)
         {
-            request.employee.setMaternalLeaves(
-                    request.employee.getMaternalLeaves()-request.noOfHolidaysApplied());
+            this.leaveRequest.employee.setMaternalLeaves(
+                    this.leaveRequest.employee.getMaternalLeaves()-this.leaveRequest.noOfHolidaysApplied());
         }
-        else if(request.leaveType==LeaveType.PATERNITY)
+        else if(this.leaveRequest.leaveType==LeaveType.PATERNITY)
         {
-            request.employee.setPaternalLeaves(
-                    request.employee.getPaternalLeaves()-request.noOfHolidaysApplied());
+            this.leaveRequest.employee.setPaternalLeaves(
+                    this.leaveRequest.employee.getPaternalLeaves()-this.leaveRequest.noOfHolidaysApplied());
         }
-        else if(request.leaveType==LeaveType.COMPOFF)
+        else if(this.leaveRequest.leaveType==LeaveType.COMPOFF)
         {
-            request.employee.setCompOffLeaves(
-                    request.employee.getCompOffLeaves()-request.noOfHolidaysApplied());
+            //deduct comp off leaves
+            CompOffManager compOffManager=new CompOffManager(this.leaveRequest.employee);
+                compOffManager.removeAllowedCompOffForRequestedDate(this.leaveRequest.startDate);
+
         }
     }
 }

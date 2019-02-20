@@ -2,6 +2,8 @@ package com.hashedin.hu.leavetracker;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Employee {
     int id;
@@ -13,6 +15,7 @@ public class Employee {
     long sabaticalLeaves;
     long maternalLeaves;
     long paternalLeaves;
+    List<LocalDate> compOffDates = new ArrayList<LocalDate>();
 
     public Employee(int id, Gender gender, int child, LocalDate dateOfJoining, long generalLeaves) {
         this.id = id;
@@ -32,6 +35,8 @@ public class Employee {
                 if(this.child==0 || this.child==1)
                     this.maternalLeaves=30;
         }
+        if(this.experience()>2)
+            this.sabaticalLeaves=90;
     }
 
     public long getSabaticalLeaves() {
@@ -103,7 +108,22 @@ public class Employee {
     }
 
     public long experience(){
-        return ChronoUnit.YEARS.between(this.getDateOfJoining(),new LocalDate.now());
+        return ChronoUnit.YEARS.between(this.getDateOfJoining(), LocalDate.now());
         }
 
+    @Override
+        public String toString() {
+        return "Employee{" +
+                "generalLeaves=" + generalLeaves +
+                ", compOffLeaves=" + compOffLeaves +
+                ", sabaticalLeaves=" + sabaticalLeaves +
+                ", maternalLeaves=" + maternalLeaves +
+                ", paternalLeaves=" + paternalLeaves +
+                '}';
+    }
+
+    public LeaveResponse getAllLeaves()
+        {
+            return new LeaveResponse(toString());
+        }
 }

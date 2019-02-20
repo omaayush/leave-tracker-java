@@ -1,27 +1,42 @@
 package com.hashedin.hu.leavetracker;
 
 public class LeaveResponse {
-    String statusMessage;
     LeaveStatus leaveStatus;
+    LeaveResponses leaveResponses;
+    CompOffStatus compOffStatus;
+    CurrentLeaves currentLeaves;
+    String allLeaves;
 
-    public LeaveResponse(LeaveStatus leaveStatus, String statusMessage ) {
-        this.statusMessage = statusMessage;
+    LeaveResponse()
+    {
+
+    }
+
+
+    public LeaveResponse(LeaveStatus leaveStatus, LeaveResponses leaveResponses ) {
+        this.leaveResponses=leaveResponses;
         this.leaveStatus = leaveStatus;
     }
 
-    public String getStatusMessage() {
-        return statusMessage;
+    public LeaveResponse(LeaveStatus leaveStatus, CompOffStatus compOffStatus) {
+        this.leaveStatus=leaveStatus;
+        this.compOffStatus=compOffStatus;
     }
-
-    public void setStatusMessage(String statusMessage) {
-        this.statusMessage = statusMessage;
-    }
-
-    public LeaveStatus getLeaveStatus() {
-        return leaveStatus;
-    }
-
-    public void setLeaveStatus(LeaveStatus leaveStatus) {
-        this.leaveStatus = leaveStatus;
+    public LeaveResponse(String hi)
+    {
+        this.allLeaves=hi;
     }
 }
+
+//    public LeaveResponse(CurrentLeaves currentLeaves ) {
+//        this.currentLeaves=currentLeaves;
+//    }
+//    @Override
+//    public String toString() {
+//    return "LeaveResponse{" +
+//            "statusOfLeaveRequest=" + statusOfLeaveRequest +
+//            ", reason='" + reason + '\'' +
+//            '}';
+//}
+
+
