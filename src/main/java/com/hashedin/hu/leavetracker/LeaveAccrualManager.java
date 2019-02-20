@@ -1,5 +1,6 @@
 package com.hashedin.hu.leavetracker;
 
+import java.util.HashSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -37,6 +38,11 @@ public class LeaveAccrualManager {
             allEmployees.get(i).generalLeaves +=
                     creditLeavesToEmployee(allEmployees.get(i), today);
         }
+//        HashSet<Employee> allEmployees = employeeStore.getAllEmployees();
+//        for(int i=0; i<allEmployees.size(); i++) {
+//            allEmployees(i).generalLeaves +=
+//                    creditLeavesToEmployee(allEmployees.get(i), today);
+//        }
     }
 
     private int creditLeavesToEmployee(Employee employee, LocalDate today) {

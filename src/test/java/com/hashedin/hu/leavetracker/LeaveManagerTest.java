@@ -41,6 +41,7 @@ public class LeaveManagerTest {
         assertEquals("Number of leaves not permissible",response.leaveStatus,LeaveStatus.REJECTED);
     }
 
+//-----------------general leaves-----------------------
     @Test
     public void generalLeaveMaleInsufficientLeaves() {
         LeaveManager manager=new LeaveManager();
@@ -55,6 +56,26 @@ public class LeaveManagerTest {
         LeaveManager manager=new LeaveManager();
         Employee employee=new Employee(1, Gender.MALE,2,dateOfJoining(),5);
         LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.GENERAL);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
+    }
+
+
+    //-----------------sabbatical leaves-----------------------
+    @Test
+    public void sabbaticalLeaveMaleInsufficientLeaves() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,2,LocalDate.of(2019,2,12),3);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.SABBATICAL);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void sabbaticalLeaveMaleSufficientLeaves() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,2,LocalDate.of(2012,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.SABBATICAL);
         LeaveResponse response=manager.applyForLeave(request);
         assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
     }
