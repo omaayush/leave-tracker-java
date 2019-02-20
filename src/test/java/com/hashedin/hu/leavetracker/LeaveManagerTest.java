@@ -79,6 +79,148 @@ public class LeaveManagerTest {
         LeaveResponse response=manager.applyForLeave(request);
         assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
     }
+
+    //-----------------maternal leaves-----------------------
+    @Test
+    public void maternalLeaveMale() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,2,LocalDate.of(2019,2,12),3);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.MATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void maternalLeaveFemaleChildMoreThan2() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,2,LocalDate.of(2012,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.MATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void maternalLeaveFemaleChildLessThan2() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,1,LocalDate.of(2012,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.MATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
+    }
+
+    @Test
+    public void maternalLeaveFemaleChildLessThan2ExperinceLess() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,1,LocalDate.of(2019,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.MATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void maternalLeaveFemaleChildGreaterThan2ExperinceLess() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,1,LocalDate.of(2015,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(), after4Days(),LeaveType.MATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
+    }
+
+    //-----------------paternal leaves-----------------------
+    @Test
+    public void paternityLeaveFemale() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,2,
+                LocalDate.of(2019,2,12),3);
+        LeaveRequest request=new LeaveRequest(
+                employee,today(), after4Days(),LeaveType.PATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void paternityLeaveMaleChildMoreThan2() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,
+                2,LocalDate.of(2012,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(),
+                after4Days(),LeaveType.PATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void paternityLeaveMaleChildLessThan2() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,1,
+                LocalDate.of(2012,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(),
+                after4Days(),LeaveType.PATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
+    }
+
+    @Test
+    public void paternityLeaveMaleChildLessThan2ExperinceLess() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,
+                1,LocalDate.of(2019,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(),
+                after4Days(),LeaveType.PATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void paternityLeaveMaleChildGreaterThan2ExperinceLess() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.MALE,1,
+                LocalDate.of(2015,2,12),5);
+        LeaveRequest request=new LeaveRequest(employee,today(),
+                after4Days(),LeaveType.PATERNITY);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.ACCEPTED);
+    }
+
+    //-----------------sabbatical leaves-----------------------
+    @Test
+    public void sabbaticalLeaveExperienceLessThan2Years() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,2,
+                LocalDate.of(2019,2,12),3);
+        LeaveRequest request=new LeaveRequest(
+                employee,today(), after4Days(),LeaveType.SABBATICAL);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,LeaveStatus.REJECTED);
+    }
+
+    @Test
+    public void sabbaticalLeaveExperienceGreaterThan2Years() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,2,
+                LocalDate.of(2016,2,12),3);
+        LeaveRequest request=new LeaveRequest(
+                employee,today(), after4Days(),LeaveType.SABBATICAL);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,
+                LeaveStatus.ACCEPTED);
+    }
+
+    //------------CompOff Leaves--------------------------
+    @Test
+    public void CompOffLeave() {
+        LeaveManager manager=new LeaveManager();
+        Employee employee=new Employee(1, Gender.FEMALE,2,
+                LocalDate.of(2016,2,12),3);
+        this.employee.compOffDates.add(LocalDate.of(2019,1,22));
+        LeaveRequest request=new LeaveRequest(
+                employee,today(), after4Days(),LeaveType.COMPOFF);
+        LeaveResponse response=manager.applyForLeave(request);
+        assertEquals(response.leaveResponses.toString(),response.leaveStatus,
+                LeaveStatus.ACCEPTED);
+    }
+
+
 //
 //    @Test(expected = IllegalArgumentException.class)
 //    public void exceptionTest(){

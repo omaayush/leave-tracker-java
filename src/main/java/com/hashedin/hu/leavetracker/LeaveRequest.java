@@ -34,33 +34,38 @@ public class LeaveRequest {
     {
         if(this.leaveType==LeaveType.GENERAL)
         {
-            if(this.employee.getGeneralLeaves()>0 && this.employee.getGeneralLeaves()>=this.noOfHolidaysApplied())
+            if(this.employee.getGeneralLeaves()>0
+                    && this.employee.getGeneralLeaves()>=this.noOfHolidaysApplied())
                 return true;
         }
         else if(this.leaveType==LeaveType.SABBATICAL)
         {
-            if(this.employee.experience()>=2)
+            if(this.employee.experience()>=2
+                    && this.employee.getSabaticalLeaves()>=this.noOfHolidaysApplied())
                 return true;
         }
         else if(this.leaveType==LeaveType.MATERNITY)
         {
             if(this.employee.getGender()==Gender.FEMALE
-                    && this.employee.getChild()<2 &&
-                    this.noOfHolidaysApplied()<=180)
+                    && this.employee.getChild()<2
+                    && this.noOfHolidaysApplied()<=180
+                    && this.employee.getMaternalLeaves()>=this.noOfHolidaysApplied())
                 return true;
         }
         else if(this.leaveType==LeaveType.PATERNITY)
         {
             if(this.employee.getGender()==Gender.MALE
                     && this.employee.getChild()<2
-                    && this.noOfHolidaysApplied()<=30)
+                    && this.noOfHolidaysApplied()<=30
+                    && this.employee.paternalLeaves>=this.noOfHolidaysApplied())
                 return true;
         }
         else if(this.leaveType==LeaveType.COMPOFF)
         {
             CompOffManager compOffManager=new CompOffManager();
             compOffManager.currentCompOffLeaves(this.employee);
-            long hasCompOff=compOffManager.allowedCompOffFromRequestedDate(this.employee,this.startDate);
+            long hasCompOff=compOffManager.allowedCompOffFromRequestedDate(
+                    this.employee,this.startDate);
             if(hasCompOff>0)
             {
                 return true;
@@ -73,25 +78,31 @@ public class LeaveRequest {
     {
         if(this.leaveType==LeaveType.GENERAL)
         {
-            return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.GENERAL_LEAVE_BALANCE_INSUFFICIENT);
+            return new LeaveResponse(LeaveStatus.REJECTED,
+                    LeaveResponses.GENERAL_LEAVE_BALANCE_INSUFFICIENT);
 
         }
         else if(this.leaveType==LeaveType.SABBATICAL)
         {
-            return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.SABBATICAL_LEAVE_BALANCE_INSUFFICIENT);
+            return new LeaveResponse(LeaveStatus.REJECTED,
+                    LeaveResponses.SABBATICAL_LEAVE_BALANCE_INSUFFICIENT);
         }
         else if(this.leaveType==LeaveType.MATERNITY)
         {
-            return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.MATERNITY_LEAVE_BALANCE_INSUFFICIENT);
+            return new LeaveResponse(LeaveStatus.REJECTED,
+                    LeaveResponses.MATERNITY_LEAVE_BALANCE_INSUFFICIENT);
         }
         else if(this.leaveType==LeaveType.PATERNITY)
         {
-            return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.PATERNITY_LEAVE_BALANCE_INSUFFICIENT);
+            return new LeaveResponse(LeaveStatus.REJECTED,
+                    LeaveResponses.PATERNITY_LEAVE_BALANCE_INSUFFICIENT);
         }
         else if(this.leaveType==LeaveType.COMPOFF)
         {
-            return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.COMPOFF_LEAVE_BALANCE_INSUFFICIENT);
+            return new LeaveResponse(LeaveStatus.REJECTED,
+                    LeaveResponses.COMPOFF_LEAVE_BALANCE_INSUFFICIENT);
         }
-        return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.LEAVE_BALANCE_INSUFFICIENT);
+        return new LeaveResponse(LeaveStatus.REJECTED,
+                LeaveResponses.LEAVE_BALANCE_INSUFFICIENT);
     }
 }

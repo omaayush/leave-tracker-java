@@ -21,7 +21,10 @@ public class CompOffManager {
     }
 
     public void currentCompOffLeaves(Employee employee){
-        this.employee.setCompOffLeaves(employee.compOffDates.size());
+        if(employee.compOffDates.isEmpty())
+            this.employee.setCompOffLeaves(0);
+        else
+            this.employee.setCompOffLeaves(employee.compOffDates.size());
     }
 
     public LeaveResponse add(Employee employee, LocalDate compOffLeaveRequest, LocalTime startTime, LocalTime endTime)

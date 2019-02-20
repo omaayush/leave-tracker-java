@@ -25,15 +25,16 @@ public class Employee {
         this.generalLeaves = generalLeaves;
         this.maternalLeaves=0;
         this.paternalLeaves=0;
+        this.compOffLeaves=0;
         if(this.gender==Gender.FEMALE)
         {
-            if(this.child==0 || this.child==1)
+            if(this.experience()>2 && (this.child==0 || this.child==1))
                 this.maternalLeaves=180;
         }
         else
             {
-                if(this.child==0 || this.child==1)
-                    this.maternalLeaves=30;
+                if(this.experience()>2 && (this.child==0 || this.child==1))
+                    this.paternalLeaves=30;
         }
         if(this.experience()>2)
             this.sabaticalLeaves=90;
