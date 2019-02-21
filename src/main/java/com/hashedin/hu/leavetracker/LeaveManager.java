@@ -1,18 +1,65 @@
 package com.hashedin.hu.leavetracker;
 
-public class LeaveManager {
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
-    public LeaveResponse applyForLeave(LeaveRequest request) {
-        if (request.getStartDate().isAfter(request.getEndDate())) {
+public class LeaveManager {
+    private ArrayList<LeaveRequest> listOfApprovedRequests;
+    private CompOffManager compOffManager;
+
+    LeaveManager() {
+        this.listOfApprovedRequests = new ArrayList<LeaveRequest>();
+        this.compOffManager = new CompOffManager();
+    }
+
+
+    public LeaveResponse applyForLeave(LeaveRequest request)
+    {
+        LeavesLeft leavesLeft = new LeavesLeft(request);
+        LeaveResponse response=new LeaveResponse();
+
+        //LeaveRequest leaveRequest=new LeaveRequest()
+        if(givenDateIsNull(request.getStartDate()) || givenDateIsNull(request.getEndDate())) {
+            response.leaveStatus=LeaveStatus.REJECTED;
+            //add leave response also
+            throw new IllegalArgumentException("The start date and end date cannot be null");
+        }
+
+        if (request.invalidDate()) {
+            response.leaveStatus=LeaveStatus.REJECTED;
             throw new IllegalArgumentException("Start Date must be before end date");
         }
 
-        long days = 2;
 
-        if (days < 3)
-            return new LeaveResponse(LeaveStatus.ACCEPTED, "Less than 3 leaves accepted");
-        else
-            return new LeaveResponse(LeaveStatus.REJECTED, "Unknown number of leaves");
+        if (request.isAllowed())
+        {
+            leavesLeft.leavesDeductions();
+            return new LeaveResponse(LeaveStatus.ACCEPTED, LeaveResponses.LEAVE_APPROVED);
+        }
+        else {
+            return request.whyRejected();
+        }
+            //return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.LEAVE_BALANCE_INSUFFICIENT);
     }
+
+    private boolean givenDateIsNull(LocalDate startDate) {
+        return startDate == null;
+    }
+
+    public LeaveResponse checkLeaveBalance(Employee employee){
+        return employee.getAllLeaves();
+    }
+
+    public LeaveResponse logExtraHoursWorked
+            (Employee employee,
+             LocalDate dateOfAppliedCompOff,
+             LocalTime startTime,
+             LocalTime endTime)
+    {
+        return compOffManager.add(employee,dateOfAppliedCompOff,startTime,endTime);
+    }
+
+    //secondary functions
 
 }
