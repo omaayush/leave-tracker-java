@@ -19,14 +19,14 @@ enum Gender {
 
 @Resource
 public class Employee {
-    int id;
-    String name;
-    int leavesBalance;
-    ArrayList<CompOffModel> compOffBalance;
-    LocalDate joiningDate;
-    Gender gender;
-    boolean isOnBlanketCoverageLeave;
-    int numberOfChildren;
+    private int id;
+    private String name;
+    private int leavesBalance;
+    private ArrayList<CompOffModel> compOffBalance;
+    private LocalDate joiningDate;
+    private Gender gender;
+    private boolean isOnBlanketCoverageLeave;
+    private int numberOfChildren;
 
     public int getId() {
         return id;
@@ -84,17 +84,17 @@ public class Employee {
         return optionalLeavesAvailed;
     }
 
-    public void setOptionalLeavesAvailed(ArrayList<LocalDate> optionalLeavesAvailed) {
-        this.optionalLeavesAvailed = optionalLeavesAvailed;
-    }
-
-    public Comparator<? super CompOffModel> getCompareWrtDate() {
-        return compareWrtDate;
-    }
-
-    public void setCompareWrtDate(Comparator<? super CompOffModel> compareWrtDate) {
-        this.compareWrtDate = compareWrtDate;
-    }
+//    public void setOptionalLeavesAvailed(ArrayList<LocalDate> optionalLeavesAvailed) {
+//        this.optionalLeavesAvailed = optionalLeavesAvailed;
+//    }
+//
+//    public Comparator<? super CompOffModel> getCompareWrtDate() {
+//        return compareWrtDate;
+//    }
+//
+//    public void setCompareWrtDate(Comparator<? super CompOffModel> compareWrtDate) {
+//        this.compareWrtDate = compareWrtDate;
+//    }
 
     @Override
     public String toString() {
@@ -108,11 +108,11 @@ public class Employee {
                 ", isOnBlanketCoverageLeave=" + isOnBlanketCoverageLeave +
                 ", numberOfChildren=" + numberOfChildren +
                 ", optionalLeavesAvailed=" + optionalLeavesAvailed +
-                ", compareWrtDate=" + compareWrtDate +
+                //", compareWrtDate=" + compareWrtDate +
                 '}';
     }
 
-    ArrayList<LocalDate> optionalLeavesAvailed;
+    private ArrayList<LocalDate> optionalLeavesAvailed;
 
 
     Employee(int id, String name, int leavesBalance, LocalDate joiningDate, Gender gender) {
@@ -139,40 +139,40 @@ public class Employee {
         this.compOffBalance = compOffBalance;
     }
 
-    public ArrayList<CompOffModel> getValidCompOffBalance(LocalDate startDate) {
-        ArrayList<CompOffModel> validCompOffBalance = new ArrayList<CompOffModel>();
-        for(int i=0; i<compOffBalance.size(); i++) {
-            if(compOffBalance.get(i).validUpto.isAfter(startDate) && compOffBalance.get(i).status == CompOffStatus.AVAILABLE) {
-                validCompOffBalance.add(compOffBalance.get(i));
-            }
-        }
-        return validCompOffBalance;
-    }
+//    public ArrayList<CompOffModel> getValidCompOffBalance(LocalDate startDate) {
+//        ArrayList<CompOffModel> validCompOffBalance = new ArrayList<CompOffModel>();
+//        for(int i=0; i<compOffBalance.size(); i++) {
+//            if(compOffBalance.get(i).getValidUpto().isAfter(startDate) && compOffBalance.get(i).status == CompOffStatus.AVAILABLE) {
+//                validCompOffBalance.add(compOffBalance.get(i));
+//            }
+//        }
+//        return validCompOffBalance;
+//    }
 
-    public long getValidCompOffBalanceSize(LocalDate startDate) {
-        return getValidCompOffBalance(startDate).size();
-    }
+//    public long getValidCompOffBalanceSize(LocalDate startDate) {
+//        return getValidCompOffBalance(startDate).size();
+//    }
+//
+//    public void updateCompOffBalance(LocalDate startDate, long numberOfLeavesRequested) {
+//        int count = 0;
+//        Collections.sort(this.compOffBalance, compareWrtDate);
+//        while(count != numberOfLeavesRequested) {
+//            if(startDate.isBefore(this.compOffBalance.get(count).getValidUpto())) {
+//                this.compOffBalance.get(count).status = CompOffStatus.CLAIMED;
+//                count++;
+//            }
+//        }
+//    }
 
-    public void updateCompOffBalance(LocalDate startDate, long numberOfLeavesRequested) {
-        int count = 0;
-        Collections.sort(this.compOffBalance, compareWrtDate);
-        while(count != numberOfLeavesRequested) {
-            if(startDate.isBefore(this.compOffBalance.get(count).validUpto)) {
-                this.compOffBalance.get(count).status = CompOffStatus.CLAIMED;
-                count++;
-            }
-        }
-    }
-
-    private Comparator<? super CompOffModel> compareWrtDate = new Comparator<CompOffModel>() {
-        @Override
-        public int compare(CompOffModel compOffData1, CompOffModel compOff2) {
-            return (compOffData1.validUpto.isAfter(compOff2.validUpto)) ? 1 : 0;
-        }
-    };
-
-    public boolean hasWorkedForGivenDays(LocalDate startDate, int numberofDaysRequiredForWork) {
-        long numberOfdaysWorked = ChronoUnit.DAYS.between(joiningDate, startDate);
-        return numberOfdaysWorked >= numberofDaysRequiredForWork;
-    }
+//    private Comparator<? super CompOffModel> compareWrtDate = new Comparator<CompOffModel>() {
+//        @Override
+//        public int compare(CompOffModel compOffData1, CompOffModel compOff2) {
+//            return (compOffData1.validUpto.isAfter(compOff2.validUpto)) ? 1 : 0;
+//        }
+//    };
+//
+//    public boolean hasWorkedForGivenDays(LocalDate startDate, int numberofDaysRequiredForWork) {
+//        long numberOfdaysWorked = ChronoUnit.DAYS.between(joiningDate, startDate);
+//        return numberOfdaysWorked >= numberofDaysRequiredForWork;
+//    }
 }

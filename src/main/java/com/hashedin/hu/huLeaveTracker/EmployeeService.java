@@ -40,14 +40,15 @@ public class EmployeeService {
         employees.add(e);
     }
 
-    public void updateEmployee(int id, Employee e) {
+    public void updateEmployee(int id, Employee employeeFromSource) {
         id--;
         for(int i=0;i<employees.size();i++)
         {
-            Employee E=employees.get(i);
-            if(E.getId()==id)
+            Employee employee;
+            employee = employees.get(i);
+            if(employee.getId()==id)
             {
-                employees.set(id,e);
+                employees.set(id,employeeFromSource);
                 return;
             }
         }

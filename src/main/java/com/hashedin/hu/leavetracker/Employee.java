@@ -6,15 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
-    int id;
-    Gender gender;
-    int child;
-    LocalDate dateOfJoining;
-    long generalLeaves;
-    long compOffLeaves;
-    long sabaticalLeaves;
-    long maternalLeaves;
-    long paternalLeaves;
+    private int id;
+    private Gender gender;
+    private int child;
+    private LocalDate dateOfJoining;
+    private long generalLeaves;
+    private long compOffLeaves;
+
+    public List<LocalDate> getCompOffDates() {
+        return compOffDates;
+    }
+
+    public void setCompOffDates(List<LocalDate> compOffDates) {
+        this.compOffDates = compOffDates;
+    }
+
+    private long sabaticalLeaves;
+    private long maternalLeaves;
+    private long paternalLeaves;
     List<LocalDate> compOffDates = new ArrayList<LocalDate>();
 
     public Employee(int id, Gender gender, int child, LocalDate dateOfJoining, long generalLeaves) {
@@ -28,16 +37,19 @@ public class Employee {
         this.compOffLeaves=0;
         if(this.gender==Gender.FEMALE)
         {
-            if(this.experience()>2 && (this.child==0 || this.child==1))
+            if(this.experience()>2 && (this.child==0 || this.child==1)) {
                 this.maternalLeaves=180;
+            }
         }
         else
             {
-                if(this.experience()>2 && (this.child==0 || this.child==1))
+                if(this.experience()>2 && (this.child==0 || this.child==1)) {
                     this.paternalLeaves=30;
+                }
         }
-        if(this.experience()>2)
+        if(this.experience()>2) {
             this.sabaticalLeaves=90;
+        }
     }
 
     public long getSabaticalLeaves() {

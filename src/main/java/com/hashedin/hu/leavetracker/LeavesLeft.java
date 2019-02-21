@@ -1,7 +1,7 @@
 package com.hashedin.hu.leavetracker;
 
 public class LeavesLeft {
-    LeaveRequest leaveRequest;
+    private LeaveRequest leaveRequest;
     public LeavesLeft(LeaveRequest leaveRequestRequest) {
         this.leaveRequest=leaveRequestRequest;
     }
@@ -42,7 +42,7 @@ public class LeavesLeft {
         {
             //deduct comp off leaves
             CompOffManager compOffManager=new CompOffManager();
-                compOffManager.removeAllowedCompOffForRequestedDate(this.leaveRequest.startDate);
+                compOffManager.removeAllowedCompOffForRequestedDate(this.leaveRequest.getStartDate());
 
         }
     }

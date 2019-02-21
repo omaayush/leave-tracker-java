@@ -24,30 +24,33 @@ package com.hashedin.hu.huLeaveTracker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeStore employeeStore;
+//    @Autowired
+//    private EmployeeStore employeeStore;
 
-    @Autowired
+    //@Autowired
     private EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeStore employeeStore, EmployeeService employeeService) {
-        this.employeeStore = employeeStore;
+    //public EmployeeController(EmployeeStore employeeStore, EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService) {
+
+            //this.employeeStore = employeeStore;
         this.employeeService = employeeService;
-        CSVFileReader reader = new CSVFileReader(this.employeeStore);
-        String path = "/home/aayush_varshney/leave-tracker-java/src/main/CSV_Files/employees.csv";
-        reader.loadEmployeeFromCSV(path);
+        //CSVFileReader reader = new CSVFileReader(this.employeeStore);
+        //String path = "/home/aayush_varshney/leave-tracker-java/src/main/CSV_Files/employees.csv";
+        //reader.loadEmployeeFromCSV(path);
     }
 
     @RequestMapping("/employees")
     public List<Employee> getAllEmployees() {
-        List<Employee> allEmployees = this.employeeService.getAllEmployees();
+        List<Employee> allEmployees;
+        allEmployees = this.employeeService.getAllEmployees();
         //System.out.println(allEmployees);
         return allEmployees;
     }

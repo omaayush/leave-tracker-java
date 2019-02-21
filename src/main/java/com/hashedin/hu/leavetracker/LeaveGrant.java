@@ -10,7 +10,9 @@ public class LeaveGrant {
     private LocalDate endDate;
     private LeaveType leaveType;
 
-    public LeaveGrant(int employeeId, LeaveResponse leaveResponse, int duration, LocalDate startDate, LocalDate endDate, LeaveType leaveType) {
+    public LeaveGrant(int employeeId, LeaveResponse leaveResponse,
+                      int duration, LocalDate startDate, LocalDate endDate,
+                      LeaveType leaveType) {
         this.employeeId = employeeId;
         this.leaveResponse = leaveResponse;
         this.duration = duration;

@@ -3,14 +3,14 @@ package com.hashedin.hu.leavetracker;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
 public class CompOffManager {
     public static long CompOffHours=8;
-    Employee employee;
-    LocalDate CompOffLeaveRequest;
-    LocalTime startTime;
-    LocalTime endTime;
+    private Employee employee;
+    private LocalDate CompOffLeaveRequest;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
 //    public CompOffManager(Employee employee) {
 //        this.employee = employee;
@@ -21,10 +21,11 @@ public class CompOffManager {
     }
 
     public void currentCompOffLeaves(Employee employee){
-        if(employee.compOffDates.isEmpty())
+        if(employee.getCompOffDates().isEmpty()) {
             this.employee.setCompOffLeaves(0);
-        else
-            this.employee.setCompOffLeaves(employee.compOffDates.size());
+        } else {
+            this.employee.setCompOffLeaves(employee.getCompOffDates().size());
+        }
     }
 
     public LeaveResponse add(Employee employee, LocalDate compOffLeaveRequest, LocalTime startTime, LocalTime endTime)

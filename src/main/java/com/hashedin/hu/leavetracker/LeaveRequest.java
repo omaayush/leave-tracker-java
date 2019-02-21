@@ -4,11 +4,51 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class LeaveRequest {
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public LeaveType getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
+
     Employee employee;
-    LocalDate startDate;
-    LocalDate endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     LeaveType leaveType;
-    LocalDate requestDate;
+    private LocalDate requestDate;
 
     public LeaveRequest(Employee employee,
                         LocalDate startDate,
@@ -35,30 +75,34 @@ public class LeaveRequest {
         if(this.leaveType==LeaveType.GENERAL)
         {
             if(this.employee.getGeneralLeaves()>0
-                    && this.employee.getGeneralLeaves()>=this.noOfHolidaysApplied())
+                    && this.employee.getGeneralLeaves()>=this.noOfHolidaysApplied()) {
                 return true;
+            }
         }
         else if(this.leaveType==LeaveType.SABBATICAL)
         {
             if(this.employee.experience()>=2
-                    && this.employee.getSabaticalLeaves()>=this.noOfHolidaysApplied())
+                    && this.employee.getSabaticalLeaves()>=this.noOfHolidaysApplied()) {
                 return true;
+            }
         }
         else if(this.leaveType==LeaveType.MATERNITY)
         {
             if(this.employee.getGender()==Gender.FEMALE
                     && this.employee.getChild()<2
                     && this.noOfHolidaysApplied()<=180
-                    && this.employee.getMaternalLeaves()>=this.noOfHolidaysApplied())
+                    && this.employee.getMaternalLeaves()>=this.noOfHolidaysApplied()) {
                 return true;
+            }
         }
         else if(this.leaveType==LeaveType.PATERNITY)
         {
             if(this.employee.getGender()==Gender.MALE
                     && this.employee.getChild()<2
                     && this.noOfHolidaysApplied()<=30
-                    && this.employee.paternalLeaves>=this.noOfHolidaysApplied())
+                    && this.employee.getPaternalLeaves()>=this.noOfHolidaysApplied()) {
                 return true;
+            }
         }
         else if(this.leaveType==LeaveType.COMPOFF)
         {

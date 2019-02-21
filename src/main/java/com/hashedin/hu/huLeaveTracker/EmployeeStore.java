@@ -2,16 +2,16 @@
 
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Component;
-    import org.springframework.stereotype.Service;
+    //import org.springframework.stereotype.Service;
 
-    import java.time.LocalDate;
+    //import java.time.LocalDate;
     import java.util.ArrayList;
-    import java.util.HashMap;
+    //import java.util.HashMap;
 
     @Component
     public class EmployeeStore {
 
-        ArrayList <Employee> employees;
+        private ArrayList <Employee> employees;
         //Employee e1=new Employee(1,"Aayush",5, LocalDate.of(2018,2,2),Gender.Male);
 
 

@@ -3,9 +3,9 @@ package com.hashedin.hu.leavetracker;
 public class LeaveResponse {
     LeaveStatus leaveStatus;
     LeaveResponses leaveResponses;
-    CompOffStatus compOffStatus;
-    CurrentLeaves currentLeaves;
-    String allLeaves;
+    private CompOffStatus compOffStatus;
+    private CurrentLeaves currentLeaves;
+    private String allLeaves;
 
     LeaveResponse()
     {

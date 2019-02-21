@@ -37,7 +37,9 @@ enum LeaveResponses {
     INVALID_BLANKET_COVERAGE("Blanket coverage request IS INVALID"),
     MATERNITY_LEAVE_FOR_MALE_NOTALLOWED("A male employee cannot apply for maternity leave"),
     PATERNITY_LEAEVE_FOR_FEMALE_NOT_ALLOWED("A female employee can't apply for paternity leave"),
-    EMPLOYEE_WORK_DAYS_LESS("Employee did not work for required number of days before asking for blanket coverage leaves"),
+    EMPLOYEE_WORK_DAYS_LESS("Employee did not work " +
+            "for required number of days before asking for blanket " +
+            "coverage leaves"),
     MATERNITY_LEAVE_UPTO_2_CHILDREN("Maternity leave can be applied for upto 2 children only"),
     PATERNITY_LEAVE_UPTO_2_CHILDREN("Maternity leave can be applied for upto 2 children only"),
     PATERNITY_LEAVE_10_ALLOWED("max number of paternity leaves cannot exceed 10"),

@@ -7,12 +7,12 @@ public class BlanketCoverage {
     public LeaveResponse ifBlanketCoverage(LeaveRequest request) {
         //LeaveResponse response = new LeaveResponse();
 
-        if(request.leaveType == LeaveType.MATERNITY && request.employee.gender == Gender.MALE) {
+        if(request.leaveType == LeaveType.MATERNITY && request.employee.getGender() == Gender.MALE) {
             return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.MATERNITY_LEAVE_FOR_MALE_NOTALLOWED);
         }
 
         else if(request.leaveType == LeaveType.MATERNITY
-                && !request.employee.hasWorkedForDays(request.startDate, 180))
+                && !request.employee.hasWorkedForDays(request.getStartDate(), 180))
         {
             return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.EMPLOYEE_WORK_DAYS_LESS);
 
@@ -26,13 +26,13 @@ public class BlanketCoverage {
         }
 
         else if(request.leaveType == LeaveType.SABBATICAL
-                && !request.employee.hasWorkedForDays(request.startDate, 385 * 2)) {
+                && !request.employee.hasWorkedForDays(request.getStartDate(), 385 * 2)) {
             return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.EMPLOYEE_WORK_DAYS_LESS);
 
         }
 
         else if(request.leaveType == LeaveType.SABBATICAL
-                && ChronoUnit.DAYS.between(request.requestDate, request.startDate) < 45) {
+                && ChronoUnit.DAYS.between(request.getRequestDate(), request.getStartDate()) < 45) {
             return new LeaveResponse(LeaveStatus.REJECTED, LeaveResponses.LATE_REQUEST);
 
         }

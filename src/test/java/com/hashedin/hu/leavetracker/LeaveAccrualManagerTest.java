@@ -3,7 +3,7 @@ package com.hashedin.hu.leavetracker;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+//import java.time.LocalTime;
 import java.time.Month;
 
 import static junit.framework.TestCase.assertEquals;
@@ -31,11 +31,11 @@ public class LeaveAccrualManagerTest {
     public void ForAnEmployeeWhoJoinedYearBefore () {
         LeaveAccrualManager leaveAccrualManager = new LeaveAccrualManager(this.employeeStore);
         leaveAccrualManager.creditLeavesPeriodically(LocalDate.of(2019, Month.FEBRUARY, 1));
-        assertEquals(4, employeeStore.getAllEmployees().get(0).generalLeaves);
-        assertEquals(4, employeeStore.getAllEmployees().get(1).generalLeaves);
-        assertEquals(3, employeeStore.getAllEmployees().get(2).generalLeaves);
-        assertEquals(3, employeeStore.getAllEmployees().get(3).generalLeaves);
-        assertEquals(3, employeeStore.getAllEmployees().get(4).generalLeaves);
+        assertEquals(4, employeeStore.getAllEmployees().get(0).getGeneralLeaves());
+        assertEquals(4, employeeStore.getAllEmployees().get(1).getGeneralLeaves());
+        assertEquals(3, employeeStore.getAllEmployees().get(2).getGeneralLeaves());
+        assertEquals(3, employeeStore.getAllEmployees().get(3).getGeneralLeaves());
+        assertEquals(3, employeeStore.getAllEmployees().get(4).getGeneralLeaves());
 
     }
 }

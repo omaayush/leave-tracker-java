@@ -1,10 +1,10 @@
 package com.hashedin.hu.leavetracker;
 
-import java.util.HashSet;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
+//import java.util.HashSet;
+//import java.util.concurrent.Executors;
+//import java.util.concurrent.ScheduledExecutorService;
+//
+//import static java.util.concurrent.TimeUnit.SECONDS;
 
 //public class LeaveAccrualManager {
 //    EmployeeStore employeeStore;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class LeaveAccrualManager {
 
-    EmployeeStore employeeStore;
+    private EmployeeStore employeeStore;
 
     public LeaveAccrualManager(EmployeeStore employeeStore) {
         this.employeeStore = employeeStore;
@@ -35,8 +35,7 @@ public class LeaveAccrualManager {
     public void creditLeavesPeriodically(LocalDate today) {
         ArrayList <Employee> allEmployees = employeeStore.getAllEmployees();
         for(int i=0; i<allEmployees.size(); i++) {
-            allEmployees.get(i).generalLeaves +=
-                    creditLeavesToEmployee(allEmployees.get(i), today);
+            allEmployees.get(i).setGeneralLeaves(allEmployees.get(i).getGeneralLeaves()+creditLeavesToEmployee(allEmployees.get(i), today));
         }
 //        HashSet<Employee> allEmployees = employeeStore.getAllEmployees();
 //        for(int i=0; i<allEmployees.size(); i++) {
@@ -53,11 +52,11 @@ public class LeaveAccrualManager {
     }
 
     private boolean didEmployeeJoinAfter15(Employee employee) {
-        return employee.dateOfJoining.getDayOfMonth() > 15;
+        return employee.getDateOfJoining().getDayOfMonth() > 15;
     }
 
     private boolean didEmployeeJoinTheSameMonth(Employee employee, LocalDate today) {
-        return employee.dateOfJoining.getYear() == today.getYear()
-                && today.getMonthValue() - employee.dateOfJoining.getMonthValue() == 1;
+        return employee.getDateOfJoining().getYear() == today.getYear()
+                && today.getMonthValue() - employee.getDateOfJoining().getMonthValue() == 1;
     }
 }

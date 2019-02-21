@@ -1,8 +1,8 @@
 package com.hashedin.hu.leavetracker;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.HashMap;
+//import java.time.Month;
+//import java.util.HashMap;
 
 public class OptionalHolidays {
     private LocalDate firstLeave;
@@ -13,21 +13,21 @@ public class OptionalHolidays {
         this.secondLeave = secondLeave;
     }
 
-    public LocalDate getFirstLeave() {
-        return firstLeave;
-    }
-
-    public void setFirstLeave(LocalDate firstLeave) {
-        this.firstLeave = firstLeave;
-    }
-
-    public LocalDate getSecondLeave() {
-        return secondLeave;
-    }
-
-    public void setSecondLeave(LocalDate secondLeave) {
-        this.secondLeave = secondLeave;
-    }
+//    public LocalDate getFirstLeave() {
+//        return firstLeave;
+//    }
+//
+//    public void setFirstLeave(LocalDate firstLeave) {
+//        this.firstLeave = firstLeave;
+//    }
+//
+//    public LocalDate getSecondLeave() {
+//        return secondLeave;
+//    }
+//
+//    public void setSecondLeave(LocalDate secondLeave) {
+//        this.secondLeave = secondLeave;
+//    }
 }
 
 
