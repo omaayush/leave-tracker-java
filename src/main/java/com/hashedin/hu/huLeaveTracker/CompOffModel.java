@@ -1,36 +1,24 @@
 package com.hashedin.hu.huLeaveTracker;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+
+@Entity
 public class CompOffModel {
-    private LogWorkModel associatedLog;
 
-    public LogWorkModel getAssociatedLog() {
-        return associatedLog;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int id;
 
-    public void setAssociatedLog(LogWorkModel associatedLog) {
-        this.associatedLog = associatedLog;
-    }
+    @OneToOne
+    LogWorkModel associatedLog = new LogWorkModel();
 
-    public LocalDate getValidUpto() {
-        return validUpto;
-    }
+    @Column(name = "validUpto")
+    LocalDate validUpto;
 
-    public void setValidUpto(LocalDate validUpto) {
-        this.validUpto = validUpto;
-    }
-
-    public CompOffStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CompOffStatus status) {
-        this.status = status;
-    }
-
-    private LocalDate validUpto;
-    private CompOffStatus status;
+    @Column(name = "status")
+    CompOffStatus status;
 
     public CompOffModel(LogWorkModel associatedLog, LocalDate validUpto, CompOffStatus status) {
         this.associatedLog = associatedLog;

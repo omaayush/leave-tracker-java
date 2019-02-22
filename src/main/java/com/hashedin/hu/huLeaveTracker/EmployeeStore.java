@@ -22,9 +22,9 @@
             this.employees = new ArrayList<>();
             }
 
-//        public void addEmployeeToStore(Employee employee) {
-//            this.employees.add(employee);
-//        }
+        public void addEmployeeToStore(Employee employee) {
+            this.employees.add(employee);
+        }
 
         public ArrayList<Employee> getAllEmployees() {
             return this.employees;
