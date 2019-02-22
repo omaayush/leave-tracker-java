@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface CompOffRepository extends CrudRepository<CompOffModel, Integer> {
-    public List<CompOffModel> findByAssociatedLogId(int associatedLogId);
+    List<CompOffModel> findByAssociatedLogId(int associatedLogId);
 }

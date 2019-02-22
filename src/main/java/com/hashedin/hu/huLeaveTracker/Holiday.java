@@ -3,9 +3,9 @@ package com.hashedin.hu.huLeaveTracker;
 import java.time.LocalDate;
 
 public class Holiday {
-    String name;
-    boolean isOptional;
-    LocalDate groupedWith;
+    private String name;
+    private boolean isOptional;
+    private LocalDate groupedWith;
 
     public Holiday(String name, boolean isOptional, LocalDate groupedWith) {
         this.name = name;

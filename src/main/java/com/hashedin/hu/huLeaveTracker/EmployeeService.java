@@ -3,9 +3,7 @@ package com.hashedin.hu.huLeaveTracker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,33 +47,6 @@ public class EmployeeService {
         employeeRepository.findAll().forEach(allEmployees::add);
         return allEmployees;
     }
-
-//    public Employee getEmployee(int id) {
-//        return employees.stream().filter(e -> e.getId()==id ).findFirst().get();
-//    }
-
-//    public void addEmployee(Employee e)
-//    {
-//        employees.add(e);
-//    }
-
-//    public void updateEmployee(int id, Employee employeeFromSource) {
-//        id--;
-//        for(int i=0;i<employees.size();i++)
-//        {
-//            Employee employee;
-//            employee = employees.get(i);
-//            if(employee.getId()==id)
-//            {
-//                employees.set(id,employeeFromSource);
-//                return;
-//            }
-//        }
-//    }
-
-//    public void deleteEmployee(int id) {
-//        employees.removeIf(e->e.getId()==id);
-//    }
 
     public Optional<Employee> getEmployeeById(int id) {
         return employeeRepository.findById(id);

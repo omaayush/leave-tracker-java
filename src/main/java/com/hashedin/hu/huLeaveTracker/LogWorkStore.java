@@ -1,39 +1,44 @@
 package com.hashedin.hu.huLeaveTracker;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 
+@Service
 public class LogWorkStore {
-    HashMap<Employee, ArrayList<LogWorkModel>> listOfLogWorksReported;
+
+    @Autowired
+    private LogWorkRepository logWorkRepository;
+
+    protected LogWorkStore() {}
+
+    LogWorkStore (LogWorkRepository logWorkRepository) {
+        this.logWorkRepository = logWorkRepository;
+    }
 
 
-    LogWorkStore() {
-        this.listOfLogWorksReported = new HashMap<>();
+    public LogWorkModel getLogWorkById(int logWorkId) {
+        LogWorkModel logwork = this.logWorkRepository.findById(logWorkId).get();
+        return logwork;
     }
 
     public LogWorkStatus putLogWorkInStore(Employee employee, LogWorkModel logWork) {
 
-        // first time case
-        this.listOfLogWorksReported.putIfAbsent(employee, new ArrayList<>());
-
-        ArrayList<LogWorkModel> currentlogWork = this.listOfLogWorksReported.get(employee);
-
-        currentlogWork.add(logWork);
-
-        this.listOfLogWorksReported.put(employee, currentlogWork);
+        this.logWorkRepository.save(logWork);
 
         return LogWorkStatus.LOG_WORK_ADDED;
     }
 
     public long getLogWorkHours(Employee employee, LocalDate date) {
-        ArrayList<LogWorkModel> currentlogWork = this.listOfLogWorksReported.get(employee);
+        ArrayList<LogWorkModel> currentlogWork = this.logWorkRepository.findAllByEmployeeId(employee.getId());
         for(int i=0 ; i<currentlogWork.size(); i++)
         {
             LogWorkModel currentLog = currentlogWork.get(i);
-            if(currentLog.logDate.isEqual(date)) {
-                return ChronoUnit.HOURS.between(currentLog.startTime, currentLog.endTime);
+            if(currentLog.getLogDate().isEqual(date)) {
+                return ChronoUnit.HOURS.between(currentLog.getStartTime(), currentLog.getEndTime());
             }
         }
 
@@ -41,26 +46,23 @@ public class LogWorkStore {
     }
 
     public ArrayList <LogWorkModel> getLogWorkListOfEmployee(Employee employee) {
-        return this.listOfLogWorksReported.get(employee);
+        return this.logWorkRepository.findAllByEmployeeId(employee.getId());
     }
 
     public LogWorkModel getLogWork(Employee employee, LocalDate date) {
-        ArrayList <LogWorkModel> currentLogWork = this.listOfLogWorksReported.get(employee);
+        ArrayList <LogWorkModel> currentLogWork = this.logWorkRepository.findAllByEmployeeId(employee.getId());
         for(int i = 0; i<currentLogWork.size(); i++) {
-            if(currentLogWork.get(i).logDate == date) {
+            if(currentLogWork.get(i).getLogDate() == date) {
                 return currentLogWork.get(i);
             }
         }
         return null;
     }
 
-    public LogWorkStatus removeLogWork(Employee employee, LogWorkModel logWork){
-        ArrayList <LogWorkModel> employeeLogs = this.listOfLogWorksReported.get(employee);
-        if(employeeLogs != null && employeeLogs.contains(logWork)){
-            employeeLogs.remove(logWork);
-            return LogWorkStatus.LOG_WORK_REMOVED;
-        }
+    public LogWorkStatus removeLogWork(LogWorkModel logWork) {
 
-        return LogWorkStatus.LOG_NOT_FOUND;
+        this.logWorkRepository.delete(logWork);
+
+        return LogWorkStatus.LOG_WORK_REMOVED;
     }
 }

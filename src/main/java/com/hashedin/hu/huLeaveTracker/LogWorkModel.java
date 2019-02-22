@@ -1,21 +1,44 @@
 package com.hashedin.hu.huLeaveTracker;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "logwork")
 public class LogWorkModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    LocalDate logDate;
-    LocalTime startTime;
-    LocalTime endTime;
+    private int id;
+
+    @Column
+    private int employeeId;
+
+    @Column
+    private LocalDate logDate;
+
+    @Column
+    private LocalTime startTime;
+
+    @Column
+    private LocalTime endTime;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public LocalDate getLogDate() {
         return logDate;
@@ -43,7 +66,8 @@ public class LogWorkModel {
 
     public LogWorkModel() {}
 
-    public LogWorkModel(LocalDate logDate, LocalTime startTime, LocalTime endTime) {
+    public LogWorkModel(int employeeId, LocalDate logDate, LocalTime startTime, LocalTime endTime) {
+        this.employeeId = employeeId;
         this.logDate = logDate;
         this.startTime = startTime;
         this.endTime = endTime;

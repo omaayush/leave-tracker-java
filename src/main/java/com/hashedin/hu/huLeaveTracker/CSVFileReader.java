@@ -1,12 +1,15 @@
 package com.hashedin.hu.huLeaveTracker;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
 public class CSVFileReader {
-    EmployeeStore employeeStore;
+    private EmployeeStore employeeStore;
 
 
     public CSVFileReader(EmployeeStore employeeStore) {
@@ -34,6 +37,10 @@ public class CSVFileReader {
         }
     }
     private Gender returnGender(String gender) {
-        return (gender.toLowerCase().equals("male")) ? Gender.Male: Gender.Female;
+        if (gender.toLowerCase().equals("male")) {
+            return Gender.Male;
+        } else {
+            return Gender.Female;
+        }
     }
 }

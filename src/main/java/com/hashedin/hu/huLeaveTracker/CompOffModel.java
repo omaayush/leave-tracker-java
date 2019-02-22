@@ -1,6 +1,13 @@
 package com.hashedin.hu.huLeaveTracker;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
 import java.time.LocalDate;
 
 
@@ -10,17 +17,6 @@ import java.time.LocalDate;
 public class CompOffModel {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private int id;
-//
-//    @OneToOne
-//    LogWorkModel associatedLog =  new LogWorkModel();
-//
-//    @Column(name = "validUpto")
-//    LocalDate validUpto;
-//
-//    @Column(name = "status")
-//    CompOffStatus status;
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -82,5 +78,4 @@ public class CompOffModel {
     public void setStatus(CompOffStatus status) {
         this.status = status;
     }
-
 }

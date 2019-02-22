@@ -11,15 +11,15 @@ public class LeaveRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    private int id;
 
-    int employee;
+    private int employee;
 
-    TypeOfLeaves typeOfLeaves;
-    StatusOfLeaveRequest statusOfLeaveRequest;
-    LocalDate startDate;
-    LocalDate endDate;
-    LocalDate requestDate;
+    private TypeOfLeaves typeOfLeaves;
+    private StatusOfLeaveRequest statusOfLeaveRequest;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate requestDate;
 
     public int getId() {
         return id;

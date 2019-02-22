@@ -1,11 +1,20 @@
 package com.hashedin.hu.huLeaveTracker;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -14,54 +23,35 @@ import java.util.List;
 public class Employee {
 
     @Id
-    //@GeneratedValue(strategy= GenerationType.AUTO)
-    int id;
+    private int id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "leavesBalance")
-    int leavesBalance;
+    private int leavesBalance;
 
-//    @Column(name = "compoffBalance")
-//    @OneToMany
-//    List<CompOffModel> compOffBalance = new ArrayList<>();
 
-//
-//    @Column(name = "joiningDate")
-//    LocalDate joiningDate;
-//
-//    @Column(name="gender")
-//    Gender gender;
-//
-//    @Column(name="isOnBlanketCoverage")
-//    boolean isOnBlanketCoverageLeave;
-//
-//    @Column(name="numberOfChildren")
-//    int numberOfChildren;
-//
-//    @ElementCollection
-//    List<LocalDate> optionalLeavesAvailed = new ArrayList<>();
-
+    //    @JoinColumn(name="compoff_id")
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="compoff_id")
-    Collection<CompOffModel> compOffBalance = new ArrayList<>();
+    @JoinColumn(name = "compoff_id")
+    private Collection<CompOffModel> compOffBalance = new ArrayList<>();
 
 
     @Column(name = "joiningDate")
-    LocalDate joiningDate;
+    private LocalDate joiningDate;
 
-    @Column(name="gender")
-    Gender gender;
+    @Column(name = "gender")
+    private Gender gender;
 
-    @Column(name="isOnBlanketCoverage")
-    boolean isOnBlanketCoverageLeave;
+    @Column(name = "isOnBlanketCoverage")
+    private boolean isOnBlanketCoverageLeave;
 
-    @Column(name="numberOfChildren")
-    int numberOfChildren;
+    @Column(name = "numberOfChildren")
+    private int numberOfChildren;
 
     @ElementCollection
-    List<LocalDate> optionalLeavesAvailed = new ArrayList<>();
+    private List<LocalDate> optionalLeavesAvailed = new ArrayList<>();
 
     public Employee() {
     }
@@ -172,21 +162,27 @@ public class Employee {
         this.numberOfChildren = numberOfChildren;
     }
 
+
     public Collection<CompOffModel> getCompOffBalance() {
         return compOffBalance;
     }
 
-    public void setCompOffBalance(List<CompOffModel> compOffBalance) {
+    public void setCompOffBalance(Collection<CompOffModel> compOffBalance) {
         this.compOffBalance = compOffBalance;
     }
 
     public List<CompOffModel> getValidCompOffBalance(LocalDate startDate) {
+
         ArrayList<CompOffModel> validCompOffBalance = new ArrayList<>();
+
+        List<CompOffModel> compOffBalance = new ArrayList<>();
+
+        compOffBalance.addAll(this.getCompOffBalance());
 
         for(int i=0; i<compOffBalance.size(); i++) {
 
-            if(compOffBalance.get(i).validUpto.isAfter(startDate)
-                    && compOffBalance.get(i).status == CompOffStatus.AVAILABLE) {
+            if(compOffBalance.get(i).getValidUpto().isAfter(startDate)
+                    && compOffBalance.get(i).getStatus() == CompOffStatus.AVAILABLE) {
 
                 validCompOffBalance.add(compOffBalance.get(i));
             }
@@ -203,7 +199,9 @@ public class Employee {
 
         List<CompOffModel> compOffBalance = new ArrayList<>();
         compOffBalance.addAll(this.compOffBalance);
-
+//        Collections.sort(this.compOffBalance, (CompOffModel compOffData1, CompOffModel compOff2) -> {
+//            return (compOffData1.getValidUpto().isAfter(compOff2.getValidUpto())) ? 1 : 0;
+//        });
         while(count != numberOfLeavesRequested) {
             if(startDate.isBefore(compOffBalance.get(count).getValidUpto())) {
                 compOffBalance.get(count).setStatus(CompOffStatus.CLAIMED);

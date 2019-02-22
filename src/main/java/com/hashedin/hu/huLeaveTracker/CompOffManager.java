@@ -104,9 +104,11 @@ public class CompOffManager {
 
     @Autowired private LogWorkStore logWorkStore;
 
-    @Autowired EmployeeService employeeService;
+    @Autowired
+    private EmployeeService employeeService;
 
-    @Autowired CompOffRepository compOffRepository;
+    @Autowired
+    private CompOffRepository compOffRepository;
 
     CompOffManager() {}
 
@@ -128,7 +130,7 @@ public class CompOffManager {
             return CompOffProcessStatus.LOG_DOES_NOT_EXIST_FOR_THIS_DATE;
         }
 
-        if(hours < Constants.MIN_COMP_OFF_HOURS) {
+        if(hours < 8) {
             return CompOffProcessStatus.INSUFFICIENT_COMPOFF_HOURS;
         }
 
