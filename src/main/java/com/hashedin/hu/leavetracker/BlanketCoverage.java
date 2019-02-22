@@ -37,7 +37,8 @@ public class BlanketCoverage {
 
         }
 
-        else
+        else {
             return new LeaveResponse(LeaveStatus.ACCEPTED, LeaveResponses.VALID_BLANKET_COVERAGE);
+        }
     }
 }

@@ -2,10 +2,7 @@ package com.hashedin.hu.huLeaveTracker;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 enum Gender {
     Male("Male"),
@@ -138,41 +135,4 @@ public class Employee {
     public void setCompOffBalance(ArrayList<CompOffModel> compOffBalance) {
         this.compOffBalance = compOffBalance;
     }
-
-//    public ArrayList<CompOffModel> getValidCompOffBalance(LocalDate startDate) {
-//        ArrayList<CompOffModel> validCompOffBalance = new ArrayList<CompOffModel>();
-//        for(int i=0; i<compOffBalance.size(); i++) {
-//            if(compOffBalance.get(i).getValidUpto().isAfter(startDate) && compOffBalance.get(i).status == CompOffStatus.AVAILABLE) {
-//                validCompOffBalance.add(compOffBalance.get(i));
-//            }
-//        }
-//        return validCompOffBalance;
-//    }
-
-//    public long getValidCompOffBalanceSize(LocalDate startDate) {
-//        return getValidCompOffBalance(startDate).size();
-//    }
-//
-//    public void updateCompOffBalance(LocalDate startDate, long numberOfLeavesRequested) {
-//        int count = 0;
-//        Collections.sort(this.compOffBalance, compareWrtDate);
-//        while(count != numberOfLeavesRequested) {
-//            if(startDate.isBefore(this.compOffBalance.get(count).getValidUpto())) {
-//                this.compOffBalance.get(count).status = CompOffStatus.CLAIMED;
-//                count++;
-//            }
-//        }
-//    }
-
-//    private Comparator<? super CompOffModel> compareWrtDate = new Comparator<CompOffModel>() {
-//        @Override
-//        public int compare(CompOffModel compOffData1, CompOffModel compOff2) {
-//            return (compOffData1.validUpto.isAfter(compOff2.validUpto)) ? 1 : 0;
-//        }
-//    };
-//
-//    public boolean hasWorkedForGivenDays(LocalDate startDate, int numberofDaysRequiredForWork) {
-//        long numberOfdaysWorked = ChronoUnit.DAYS.between(joiningDate, startDate);
-//        return numberOfdaysWorked >= numberofDaysRequiredForWork;
-//    }
 }

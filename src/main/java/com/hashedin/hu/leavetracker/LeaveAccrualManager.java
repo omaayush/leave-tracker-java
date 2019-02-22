@@ -35,7 +35,10 @@ public class LeaveAccrualManager {
     public void creditLeavesPeriodically(LocalDate today) {
         ArrayList <Employee> allEmployees = employeeStore.getAllEmployees();
         for(int i=0; i<allEmployees.size(); i++) {
-            allEmployees.get(i).setGeneralLeaves(allEmployees.get(i).getGeneralLeaves()+creditLeavesToEmployee(allEmployees.get(i), today));
+            allEmployees.get(i).setGeneralLeaves(
+                    allEmployees.get(i).getGeneralLeaves()
+                            +creditLeavesToEmployee(allEmployees.get(i),
+                            today));
         }
 //        HashSet<Employee> allEmployees = employeeStore.getAllEmployees();
 //        for(int i=0; i<allEmployees.size(); i++) {

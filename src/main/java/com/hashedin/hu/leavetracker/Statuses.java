@@ -27,7 +27,7 @@ enum LeaveResponses {
     SABBATICAL_LEAVE_BALANCE_INSUFFICIENT("Sabbatical Leaves not allowed"),
     MATERNITY_LEAVE_BALANCE_INSUFFICIENT("Maternity Leave not allowed"),
     PATERNITY_LEAVE_BALANCE_INSUFFICIENT("Paternity Leave not allowed"),
-//    COMPOFF_LEAVE_BALANCE_INSUFFICIENT("CompOff Leave Balance Insufficient"),
+    COMPOFF_LEAVE_BALANCE_INSUFFICIENT("CompOff Leave Balance Insufficient"),
     LEAVE_APPROVED("Leave request meets all the criteria"),
 //    NULL_DATE("Date Cannot be null"),
 //    START_DATE_END_DATE_CONFLICT("Start date cannot be after end date"),
@@ -52,17 +52,17 @@ enum LeaveResponses {
     }
 }
 
-//enum CompOffStatus {
-//    INSUFFICIENT_HOURS("CompOff hours less than minimum compOff hours"),
-//    SUFFICIENT_HOURS("CompOff hours greater than or equal to minimum compOff hours"),
-//    NO_COMPOFF_ON_THIS_DATE("CompOff not approved within this week"),
-//    APPROVED_FOR_THIS_DATE("CompOff for this date permissible");
-//    private String status;
-//
-//    CompOffStatus(String status) {
-//        this.status = status;
-//    }
-//}
+enum CompOffStatus {
+    INSUFFICIENT_HOURS("CompOff hours less than minimum compOff hours"),
+    SUFFICIENT_HOURS("CompOff hours greater than or equal to minimum compOff hours"),
+    NO_COMPOFF_ON_THIS_DATE("CompOff not approved within this week"),
+    APPROVED_FOR_THIS_DATE("CompOff for this date permissible");
+    private String status;
+
+    CompOffStatus(String status) {
+        this.status = status;
+    }
+}
 
 enum LogDatabaseStatus {
     LOG_ADDED("Log Work successfully added to database");

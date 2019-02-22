@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class LogWorkModel {
-    LocalDate logDate;
-    LocalTime startTime;
-    LocalTime endTime;
+    private LocalDate logDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     public LocalDate getLogDate() {
         return logDate;

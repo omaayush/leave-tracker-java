@@ -26,7 +26,10 @@
 //                String[] data = line.split(",");
 //                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
 //                Employee employee = new Employee(
-//                Integer.parseInt(data[0]), data[1], Integer.parseInt(data[4]), LocalDate.parse(data[3], formatter), returnGender(data[2]));
+//                Integer.parseInt(data[0]), data[1],
+//                Integer.parseInt(data[4]),
+//                LocalDate.parse(data[3], formatter),
+//                returnGender(data[2]));
 //                employeeStore.addEmployeeToStore(employee);
 //            }
 //        }
