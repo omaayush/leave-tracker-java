@@ -1,4 +1,7 @@
 package com.hashedin.hu.huLeaveTracker;
 
-public class LeaveRequestRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface LeaveRequestRepository extends CrudRepository<LeaveRequest, Integer> {
+
 }
