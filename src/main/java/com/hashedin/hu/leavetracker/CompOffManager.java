@@ -12,9 +12,6 @@ public class CompOffManager {
     private LocalTime startTime;
     private LocalTime endTime;
 
-//    public CompOffManager(Employee employee) {
-//        this.employee = employee;
-//    }
     CompOffManager()
     {
 
@@ -90,39 +87,4 @@ public class CompOffManager {
                 break;
             }
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    CompOffManager() {
-//        this.logWorkStore = new LogWorkStore();
-//    }
-//
-//    public LogWorkStatus putLogWork(Employee employee, LogWorkModel logWork) {
-//        return this.logWorkStore.putLogWorkInStore(employee, logWork);
-//    }
-//
-//    public CompOffStatus areLoggedHoursGreaterThanCompOffHours(Employee employee, LocalDate date) {
-//
-//        long hours = this.logWorkStore.getLogWorkHours(employee, date);
-//
-//        if(hours == -1) {
-//            return CompOffStatus.LOG_DOES_NOT_EXIST_FOR_THIS_DATE;
-//        }
-//
-//        if(hours < Constants.minCompOffHours)
-//            return CompOffStatus.INSUFFICIENT_COMPOFF_HOURS;
-//        else return CompOffStatus.SUFFICIENT_COMPOFF_HOURS;
-//
-//    }
-}
+    }}
