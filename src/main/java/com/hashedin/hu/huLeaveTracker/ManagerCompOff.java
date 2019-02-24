@@ -100,7 +100,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Service
-public class CompOffManager {
+public class ManagerCompOff {
 
     @Autowired private LogWorkStore logWorkStore;
 
@@ -108,11 +108,11 @@ public class CompOffManager {
     private EmployeeService employeeService;
 
     @Autowired
-    private CompOffRepository compOffRepository;
+    private RepositoryCompOff compOffRepository;
 
-    CompOffManager() {}
+    ManagerCompOff() {}
 
-    CompOffManager(LogWorkStore logWorkStore, EmployeeService employeeService, CompOffRepository compOffRepository) {
+    ManagerCompOff(LogWorkStore logWorkStore, EmployeeService employeeService, RepositoryCompOff compOffRepository) {
         this.logWorkStore = logWorkStore;
         this.employeeService = employeeService;
         this.compOffRepository = compOffRepository;

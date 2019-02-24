@@ -29,7 +29,7 @@ class CompOffManagerTest {
     private LogWorkRepository logWorkRepository;
 
     @Autowired
-    private CompOffRepository compOffRepository;
+    private RepositoryCompOff compOffRepository;
 
     private LogWorkStore logWorkStore;
 
@@ -40,7 +40,7 @@ class CompOffManagerTest {
     private Employee employee;
     private LeaveRequest request;
 
-    private CompOffManager compOffManager;
+    private ManagerCompOff compOffManager;
 
     @BeforeEach
     public void setup() {
@@ -56,7 +56,7 @@ class CompOffManagerTest {
 
         manager = new LeaveManager(leaveRequestRepository, employeeRepository);
         logWorkStore = new LogWorkStore(logWorkRepository);
-        compOffManager = new CompOffManager(logWorkStore, employeeService, compOffRepository);
+        compOffManager = new ManagerCompOff(logWorkStore, employeeService, compOffRepository);
     }
 
 

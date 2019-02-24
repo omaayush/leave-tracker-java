@@ -33,7 +33,7 @@ class LeaveManagerTest {
     private LogWorkRepository logWorkRepository;
 
     @Autowired
-    private CompOffRepository compOffRepository;
+    private RepositoryCompOff compOffRepository;
 
     private LogWorkStore logWorkStore;
 
@@ -44,7 +44,7 @@ class LeaveManagerTest {
     private Employee employee;
     private LeaveRequest request;
 
-    private CompOffManager compOffManager;
+    private ManagerCompOff compOffManager;
 
 
     public Employee getEmployee() {
@@ -77,7 +77,7 @@ class LeaveManagerTest {
 
         manager = new LeaveManager(leaveRequestRepository, employeeRepository);
         logWorkStore = new LogWorkStore(logWorkRepository);
-        compOffManager = new CompOffManager(logWorkStore, employeeService, compOffRepository);
+        compOffManager = new ManagerCompOff(logWorkStore, employeeService, compOffRepository);
     }
 
     @Test
@@ -426,7 +426,7 @@ class LeaveManagerTest {
     // test case to reject the optional leave request because the alternate optional request was availed
 
     @Test
-    void OptionalLeaveFailureOtherOptionalLeaveAvailed() {
+    void OptionalLeaveNotAvailedOtherOptionalLeaveAvailed() {
         Employee employee = new Employee(110, "Male", 0, LocalDate.of(2018, Month.AUGUST, 19), Gender.Male);
         employeeService.addEmployee(employee);
         LeaveRequest request = new LeaveRequest(employee.getId(), TypeOfLeaves.OPTIONAL_LEAVE, LocalDate.of(2019, Month.FEBRUARY, 20), LocalDate.of(2019, Month.FEBRUARY, 20));
